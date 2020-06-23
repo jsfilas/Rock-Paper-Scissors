@@ -15,7 +15,8 @@
             function computerPlay() {
                 return gameOptions[Math.floor(Math.random() * gameOptions.length)];                
             } 
-
+            
+            // defining computerSelection outside of function so it can later be assigned to computerPlay function. 
             let computerSelection;
 
             // Functions for adding to player/computer score
@@ -63,7 +64,7 @@
             
             
 
-
+            // Function for computing the resultsn of the game
             function gameScore(scoreArray) {
                     console.log(`The final score is: ${scoreArray[0]} - ${scoreArray[1]}`);
                     if (scoreArray[0] > scoreArray[1]) {
@@ -77,7 +78,7 @@
                     }
                 }
             
-            // Function for actual game play, with rounds set to 5. 
+            // Function for actual game play, with rounds set to 5. prints gameScore at the end for results
             function game() {
                  let rounds = 5;
                  for (var i = 0; i < rounds; i++) {
@@ -87,10 +88,6 @@
                 
             }
             
-            /*console.log(playRound('rock', computerSelection));
-            console.log(playRound('scissors', computerSelection));
-            console.log(playRound('paper', computerSelection));*/
-
            
             
 
