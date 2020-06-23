@@ -5,41 +5,91 @@
     </head>
 
     <script>
+            // Set up array for game options
             let gameOptions = ["rock", "paper", "scissors"];
+
+            // Array for keeping track of score
+            let scoreArray = [0, 0];
+
+            // Function to have computer select random options
             function computerPlay() {
                 return gameOptions[Math.floor(Math.random() * gameOptions.length)];                
             } 
+
             let computerSelection;
+
+            // Functions for adding to player/computer score
+            function addScorePlayer(scoreArray) {
+                scoreArray[0] = scoreArray[0] + 1;
+            }
+
+            function addScoreComputer(scoreArray) {
+                scoreArray[1] = scoreArray[1] + 1;
+            }
+            
+            // Function for how game is played. 
             function playRound(playerSelection, computerSelection) {
                   playerSelection = playerSelection.toLowerCase();
                   computerSelection = computerPlay();
+                  
 	              if (playerSelection == 'rock' && computerSelection == 'scissors') {
-                      return "You win! Rock beats Scissors!";
+                     addScorePlayer(scoreArray);
+                     return "You win! Rock beats Scissors!";                     
                   } else if (playerSelection == 'rock' && computerSelection == 'rock') {
-                      return "Two Rocks! You tie!";
+                        return "Two Rocks! You tie!";
                   } else if (playerSelection == 'rock' && computerSelection == 'paper') {
-                      return "You lose! Paper beats rock!";
+                        addScoreComputer(scoreArray);
+                        return "You lose! Paper beats rock!";
                   } else if (playerSelection == 'paper' && computerSelection == 'rock') {
-                      return "You Win! Paper beats Rock!";
+                        addScorePlayer(scoreArray);
+                        return "You Win! Paper beats Rock!";                       
                   } else if (playerSelection == 'paper' && computerSelection == 'paper') {
                       return "Two Papers! You tie!";
                   } else if (playerSelection == 'paper' && computerSelection == 'scissors') {
-                      return "You lose! Scissors beats paper!";
+                        addScoreComputer(scoreArray);
+                        return "You lose! Scissors beats paper!";
                   }  else if (playerSelection == 'scissors' && computerSelection == 'paper') {
-                      return "You Win! Scissors beats Paper!";
+                        addScorePlayer(scoreArray);
+                        return "You Win! Scissors beats Paper!";                      
                   } else if (playerSelection == 'scissors' && computerSelection == 'scissors') {
-                      return "Two Scissors! You tie!";
+                        return "Two Scissors! You tie!";
                   } else if (playerSelection == 'scissors' && computerSelection == 'rock') {
-                      return "You lose! Rock beats Scissors!";
+                        addScoreComputer(scoreArray);
+                        return "You lose! Rock beats Scissors!";                      
                   } else {
-                      return "Something went horribly wrong!";
+                      return "Wrong input try again!";
                   }
             }
-
             
-            console.log(playRound('rock', computerSelection));
+            
+
+
+            function gameScore(scoreArray) {
+                    console.log(`The final score is: ${scoreArray[0]} - ${scoreArray[1]}`);
+                    if (scoreArray[0] > scoreArray[1]) {
+                        console.log('You win, congratulations!')
+                    } 
+                    else if (scoreArray[1] > scoreArray[0]) {
+                        console.log('You lose, the Computer won the most hands!')
+                    }
+                    else if (scoreArray[0] == scoreArray[1]) {
+                        console.log('You tied! Maybe play again? ')
+                    }
+                }
+            
+            // Function for actual game play, with rounds set to 5. 
+            function game() {
+                 let rounds = 5;
+                 for (var i = 0; i < rounds; i++) {
+                    console.log(playRound(prompt('Choose your draw! (Rock, Paper, Scissors)'), computerSelection));
+                }
+                console.log(gameScore(scoreArray));
+                
+            }
+            
+            /*console.log(playRound('rock', computerSelection));
             console.log(playRound('scissors', computerSelection));
-            console.log(playRound('paper', computerSelection));
+            console.log(playRound('paper', computerSelection));*/
 
            
             
